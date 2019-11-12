@@ -1,28 +1,19 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-import {NavigationState, NavigationScreenProp} from 'react-navigation';
+import React from 'react'
+import {View, Text, TextInput, Image, TouchableOpacity, StyleSheet} from 'react-native'
+import {NavigationState, NavigationScreenProp} from 'react-navigation'
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
-};
+}
 
 const CreateAccountScreen = ({navigation}: Props) => {
   const handleNavigation = () => {
-    navigation.navigate('ContactsScreen');
-  };
+    navigation.navigate('ChatsScreen')
+  }
 
   return (
     <View style={styles.createAccView}>
-      <Text style={styles.createAccText}>
-        Please, add your photo and data below.
-      </Text>
+      <Text style={styles.createAccText}>Please, add your photo and data below.</Text>
       <View style={styles.createAccData}>
         <View style={styles.userPhoto}>
           <Text>Photo</Text>
@@ -36,8 +27,8 @@ const CreateAccountScreen = ({navigation}: Props) => {
         <Text style={styles.createAccBtnText}>Next</Text>
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   createAccView: {
@@ -70,6 +61,6 @@ const styles = StyleSheet.create({
   createAccBtnText: {
     fontSize: 22,
   },
-});
+})
 
-export default CreateAccountScreen;
+export default CreateAccountScreen

@@ -43,7 +43,7 @@ const RootStack = createStackNavigator({
       title: 'Create your profile',
     }),
   },
-  ContactsScreen: {
+  ChatsScreen: {
     screen: RootTab,
     navigationOptions: () => ({
       title: 'Papery',

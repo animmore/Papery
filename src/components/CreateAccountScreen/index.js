@@ -1,1 +1,1 @@
-export {default} from './CreateAccountScreen';
+export {default} from './CreateAccountScreen'

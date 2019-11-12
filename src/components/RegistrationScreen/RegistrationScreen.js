@@ -1,22 +1,16 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
-import {NavigationState, NavigationScreenProp} from 'react-navigation';
-import PhoneInput from 'react-native-phone-input';
+import React from 'react'
+import {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'
+import {NavigationState, NavigationScreenProp} from 'react-navigation'
+import PhoneInput from 'react-native-phone-input'
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
-};
+}
 
 const RegistrationScreen = ({navigation}: Props) => {
   const handleNavigation = () => {
-    navigation.navigate('CreateAccountScreen');
-  };
+    navigation.navigate('CreateAccountScreen')
+  }
 
   return (
     <View style={styles.registrationView}>
@@ -24,15 +18,14 @@ const RegistrationScreen = ({navigation}: Props) => {
       <TextInput
         style={styles.inputPhoneNumber}
         placeholder="Phone Number"
-        keyboardType="phone-pad"></TextInput>
-      <TouchableOpacity
-        style={styles.registrationBtn}
-        onPress={handleNavigation}>
+        keyboardType="phone-pad"
+      ></TextInput>
+      <TouchableOpacity style={styles.registrationBtn} onPress={handleNavigation}>
         <Text style={styles.registrationBtnText}>Next</Text>
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   registrationView: {
@@ -55,6 +48,6 @@ const styles = StyleSheet.create({
   registrationBtnText: {
     fontSize: 22,
   },
-});
+})
 
-export default RegistrationScreen;
+export default RegistrationScreen

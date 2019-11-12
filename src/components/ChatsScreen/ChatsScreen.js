@@ -1,13 +1,13 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React from 'react'
+import {View, Text, StyleSheet} from 'react-native'
 
 const ChatsScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.textStyle}> Chats Screen </Text>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
     color: 'gray',
     backgroundColor: '#FFF',
   },
-});
+})
 
-export default ChatsScreen;
+export default ChatsScreen

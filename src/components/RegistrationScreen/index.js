@@ -1,1 +1,1 @@
-export {default} from './RegistrationScreen';
+export {default} from './RegistrationScreen'

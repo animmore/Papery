@@ -1,1 +1,1 @@
-export {default} from './ContactsScreen';
+export {default} from './ContactsScreen'
