@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
+import {white} from 'ansi-colors'
 
 const WelcomeScreen = ({navigation}: Props) => {
   const handleNavigation = () => {
@@ -9,10 +10,14 @@ const WelcomeScreen = ({navigation}: Props) => {
 
   return (
     <ImageBackground source={require('../../../assets/welcome.png')} style={styles.welcomeView}>
-      <Text style={styles.welcomeText}>Keep in tounch with Universe! </Text>
-      <TouchableOpacity style={styles.welcomeBtn} onPress={handleNavigation}>
-        <Text style={styles.welcomeBtnText}>Start messaging</Text>
-      </TouchableOpacity>
+      <View style={styles.welcomeTextContainer}>
+        <Text style={styles.welcomeText}>Keep in tounch with Universe! </Text>
+      </View>
+      <View style={styles.welcomeBtnContainer}>
+        <TouchableOpacity style={styles.welcomeBtn} onPress={handleNavigation}>
+          <Text style={styles.welcomeBtnText}>Start messaging</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   )
 }
@@ -21,19 +26,29 @@ const styles = StyleSheet.create({
   welcomeView: {
     flex: 1,
     alignItems: 'center',
+  },
+  welcomeTextContainer: {
+    flex: 0.55,
+    // backgroundColor: 'purple',
+    justifyContent: 'space-around',
+  },
+  welcomeBtnContainer: {
+    // backgroundColor: 'white',
+    flex: 1,
     justifyContent: 'space-around',
   },
   welcomeText: {
     fontSize: 22,
-    flex: 10,
+    color: 'white',
   },
   welcomeBtn: {
     height: 40,
     backgroundColor: 'yellow',
-    flex: 0.5,
+    borderRadius: 10,
   },
   welcomeBtnText: {
     fontSize: 22,
+    padding: 5,
   },
 })
 

@@ -13,7 +13,9 @@ const CreateAccountScreen = ({navigation}: Props) => {
 
   return (
     <View style={styles.createAccView}>
-      <Text style={styles.createAccText}>Please, add your photo and data below.</Text>
+      <View style={styles.createAccTextContainer}>
+        <Text style={styles.createAccText}>Please, add your photo and data below.</Text>
+      </View>
       <View style={styles.createAccData}>
         <View style={styles.userPhoto}>
           <Text>Photo</Text>
@@ -23,9 +25,11 @@ const CreateAccountScreen = ({navigation}: Props) => {
           <TextInput style={styles.input} placeholder="Surname" />
         </View>
       </View>
-      <TouchableOpacity style={styles.createAccBtn} onPress={handleNavigation}>
-        <Text style={styles.createAccBtnText}>Next</Text>
-      </TouchableOpacity>
+      <View style={styles.createAccBtnContainer}>
+        <TouchableOpacity style={styles.createAccBtn} onPress={handleNavigation}>
+          <Text style={styles.createAccBtnText}>Next</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -35,31 +39,40 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  createAccText: {
-    fontSize: 22,
-    marginTop: 40,
+  createAccTextContainer: {
+    flex: 1,
+    justifyContent: 'space-around',
+  },
+  createAccBtnContainer: {
+    flex: 1,
+    alignItems: 'center',
   },
   createAccData: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    alignContent: 'space-around',
+  },
+  createAccText: {
+    fontSize: 22,
   },
   input: {
-    marginTop: 10,
     width: 86,
     fontSize: 22,
+    marginTop: 5,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
   },
   createAccBtn: {
     height: 40,
-
     backgroundColor: 'yellow',
-    alignSelf: 'center',
-    marginBottom: 45,
+    borderRadius: 10,
+    width: 170,
   },
   createAccBtnText: {
     fontSize: 22,
+    padding: 5,
+    alignSelf: 'center',
   },
 })
 
