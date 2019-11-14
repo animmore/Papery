@@ -29,11 +29,9 @@ const styles = StyleSheet.create({
   },
   welcomeTextContainer: {
     flex: 0.55,
-    // backgroundColor: 'purple',
     justifyContent: 'space-around',
   },
   welcomeBtnContainer: {
-    // backgroundColor: 'white',
     flex: 1,
     justifyContent: 'space-around',
   },

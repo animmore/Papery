@@ -11,8 +11,6 @@ const ContactsScreen = (props) => {
         <View style={styles.contacts}>
           <View>
             <Image source={{uri: item.picture.large}} style={styles.contactImage} />
-          </View>
-          <View>
             <Text style={styles.nameContact}>
               {item.name.first} {item.name.last}
             </Text>
@@ -31,7 +29,6 @@ const ContactsScreen = (props) => {
       />
       <View style={styles.containerContacts}>
         <FlatList
-          windowSize={10}
           data={filtratedContacts}
           renderItem={renderItem}
           keyExtractor={(filtratedContacts, index) => `${index}`}

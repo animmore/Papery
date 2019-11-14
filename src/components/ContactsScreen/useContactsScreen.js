@@ -8,7 +8,7 @@ export const useContactsScreen = () => {
   const [searchInput, setSearchInput] = useState('')
 
   fetchContacts = () => {
-    fetch('https://randomuser.me/api/?results=20&inc=name,picture,dob,email,phone')
+    fetch('https://randomuser.me/api/?results=20&inc=name,gender,dob,email,phone,picture')
       .then((response) => response.json())
       .then((response) => {
         setContacts(response.results)

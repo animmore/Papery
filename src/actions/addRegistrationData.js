@@ -1,6 +1,5 @@
 //@flow
-
-export const addRegistrationData = (phoneNumber: string, password: string) => {
+const addRegistrationData = (phoneNumber: string, password: string) => {
   return {
     type: 'REGISTRATION_DATA',
     payload: {
@@ -9,3 +8,5 @@ export const addRegistrationData = (phoneNumber: string, password: string) => {
     },
   }
 }
+
+export default addRegistrationData

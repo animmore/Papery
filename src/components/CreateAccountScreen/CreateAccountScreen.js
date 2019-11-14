@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text, TextInput, Image, TouchableOpacity, StyleSheet} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
+import useCreateAccountScreen from './useCreateAccountScreen'
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
@@ -11,6 +12,8 @@ const CreateAccountScreen = ({navigation}: Props) => {
     navigation.navigate('ChatsScreen')
   }
 
+  const {isProfilePhotoAdded, profilePhoto, handleChooseProfilePhoto} = useCreateAccountScreen()
+
   return (
     <View style={styles.createAccView}>
       <View style={styles.createAccTextContainer}>
@@ -18,7 +21,17 @@ const CreateAccountScreen = ({navigation}: Props) => {
       </View>
       <View style={styles.createAccData}>
         <View style={styles.userPhoto}>
-          <Text>Photo</Text>
+          <TouchableOpacity onPress={handleChooseProfilePhoto}>
+            {isProfilePhotoAdded ? (
+              <View style={styles.imageView}>
+                <Image source={{uri: avatar}} />
+              </View>
+            ) : (
+              <View style={styles.imageView}>
+                {/*  <Image source={require('../../../assets/ .png')} />*/}
+              </View>
+            )}
+          </TouchableOpacity>
         </View>
         <View style={styles.userName}>
           <TextInput style={styles.input} placeholder="Name" />

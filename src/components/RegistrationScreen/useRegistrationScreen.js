@@ -1,6 +1,6 @@
-import useState from 'react'
+import {React, useState} from 'react'
 
-export const useRegistrationScreen = (addRegistrationData) => {
+const useRegistrationScreen = (addRegistrationData) => {
   const [registrationData, setRegistrationData] = useState({
     phoneNumber: '',
     password: '',
@@ -17,3 +17,5 @@ export const useRegistrationScreen = (addRegistrationData) => {
 
   return {phoneNumber, password, handleTextChanged, onSubmit}
 }
+
+export default useRegistrationScreen

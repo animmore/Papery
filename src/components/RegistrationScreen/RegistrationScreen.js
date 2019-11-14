@@ -1,13 +1,22 @@
+/* eslint-disable */
+//@flow
 import React from 'react'
 import {View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
 import PhoneInput from 'react-native-phone-input'
+import addRegistrationData from '../../actions/addRegistrationData'
+import useRegistrationScreen from './useRegistrationScreen'
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
+  addRegistrationData: (phoneNumber: string, password: string) => any,
 }
 
-const RegistrationScreen = ({navigation}: Props) => {
+const RegistrationScreen = ({navigation, addRegistrationData}: Props) => {
+  const {phoneNumber, password, handleTextChanged, onSubmit} = useRegistrationScreen(
+    addRegistrationData,
+  )
+
   const handleNavigation = () => {
     navigation.navigate('CreateAccountScreen')
   }
@@ -21,13 +30,22 @@ const RegistrationScreen = ({navigation}: Props) => {
         <View style={styles.inputPhoneNumberContainer}>
           <TextInput
             style={styles.inputPhoneNumber}
-            placeholder="Phone Number"
+            placeholder="Phone number"
             keyboardType="phone-pad"
+            onChangeText={handleTextChanged('phoneNumber')}
           />
-          <TextInput style={styles.inputPassword} placeholder="Password" />
+          <TextInput
+            style={styles.inputPassword}
+            placeholder="Password"
+            onChangeText={handleTextChanged('password')}
+          />
         </View>
         <View style={styles.registrationBtnContainer}>
-          <TouchableOpacity style={styles.registrationBtn} onPress={handleNavigation}>
+          <TouchableOpacity
+            style={styles.registrationBtn}
+            disabled={phoneNumber < 3 && password < 3}
+            onPress={handleNavigation}
+          >
             <Text style={styles.registrationBtnText}>Next</Text>
           </TouchableOpacity>
         </View>

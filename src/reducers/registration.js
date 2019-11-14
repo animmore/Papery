@@ -1,5 +1,4 @@
 //@flow
-
 const initialValue = {
   phoneNumber: '',
   password: '',
