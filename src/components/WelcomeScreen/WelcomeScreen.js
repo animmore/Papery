@@ -1,11 +1,11 @@
 import React from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
-import {white} from 'ansi-colors'
+
 
 const WelcomeScreen = ({navigation}: Props) => {
   const handleNavigation = () => {
-    navigation.navigate('RegistrationScreen')
+    navigation.navigate('LoginScreen')
   }
 
   return (

@@ -6,9 +6,11 @@ import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 
 import ChatsScreen from './src/components/ChatsScreen'
+import ChatScreen from './src/components/ChatScreen'
 import ContactsScreen from './src/components/ContactsScreen'
 import SettingScreen from './src/components/SettingsScreen'
 import RegistrationScreen from './src/components/RegistrationScreen'
+import LoginScreen from './src/components/LoginScreen'
 import WelcomeScreen from './src/components/WelcomeScreen'
 import CreateAccountScreen from './src/components/CreateAccountScreen'
 
@@ -34,6 +36,19 @@ const RootStack = createStackNavigator({
     screen: WelcomeScreen,
     navigationOptions: () => ({
       title: 'Welcome to Papery!',
+      headerTitleStyle: {
+        fontSize: 22,
+        color: '#fff',
+      },
+      headerStyle: {
+        backgroundColor: '#4571e6',
+      },
+    }),
+  },
+  LoginScreen: {
+    screen: LoginScreen,
+    navigationOptions: () => ({
+      title: 'Login',
     }),
   },
   RegistrationScreen: {
@@ -52,6 +67,19 @@ const RootStack = createStackNavigator({
     screen: RootTab,
     navigationOptions: () => ({
       title: 'Papery',
+      headerTitleStyle: {
+        fontSize: 22,
+        color: '#fff',
+      },
+      headerStyle: {
+        backgroundColor: '#4571e6',
+      },
+    }),
+  },
+  ChatScreen: {
+    screen: ChatScreen,
+    navigationOptions: () => ({
+      title: 'Chat',
     }),
   },
 })

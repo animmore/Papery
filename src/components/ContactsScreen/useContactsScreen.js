@@ -7,7 +7,7 @@ export const useContactsScreen = () => {
   const [filtratedContacts, setFiltratedContacts] = useState([])
   const [searchInput, setSearchInput] = useState('')
 
-  fetchContacts = () => {
+  const fetchContacts = () => {
     fetch('https://randomuser.me/api/?results=20&inc=name,gender,dob,email,phone,picture')
       .then((response) => response.json())
       .then((response) => {
@@ -20,7 +20,7 @@ export const useContactsScreen = () => {
     fetchContacts()
   }, [])
 
-  newArrOfContacts = () => {
+  const newArrOfContacts = () => {
     const newContacts: any = contacts.filter(
       (val) =>
         val.name.first.toLowerCase().includes(searchInput.toLowerCase()) ||
@@ -33,7 +33,7 @@ export const useContactsScreen = () => {
     newArrOfContacts()
   }, [searchInput])
 
-  searchContacts = () => {
+  const searchContacts = () => {
     return (key: string) => setSearchInput(key)
   }
 
