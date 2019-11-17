@@ -45,12 +45,12 @@ const RootStack = createStackNavigator({
       },
     }),
   },
-  LoginScreen: {
-    screen: LoginScreen,
-    navigationOptions: () => ({
-      title: 'Login',
-    }),
-  },
+  // LoginScreen: {
+  //   screen: LoginScreen,
+  //   navigationOptions: () => ({
+  //     title: 'Login',
+  //   }),
+  // },
   RegistrationScreen: {
     screen: RegistrationScreen,
     navigationOptions: () => ({

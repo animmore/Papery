@@ -26,7 +26,7 @@ const ContactsScreen = ({navigation}: Props) => {
       name: item.name.first,
       surname: item.name.last,
       image: item.picture.thumbnail,
-      email: item.email
+      email: item.email,
     })
   }
 
@@ -52,15 +52,14 @@ const ContactsScreen = ({navigation}: Props) => {
   }
   return (
     <View style={styles.container}>
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.search}
-          placeholder={'Search..'}
-          placeholderTextColor={'gray'}
-          onChangeText={onSearchInputChange()}
-        />
-      </View>
-      <View>
+      <TextInput
+        style={styles.search}
+        placeholder={'Search..'}
+        placeholderTextColor={'gray'}
+        onChangeText={onSearchInputChange()}
+      />
+
+      <View style={styles.list}>
         <FlatList
           data={filteredContacts}
           renderItem={renderItem}
@@ -96,18 +95,19 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
   },
-  searchContainer: {
-    justifyContent: 'center',
+  list: {
+    flex: 25,
   },
   search: {
+    flex: 1,
     backgroundColor: 'white',
     borderRadius: 30,
-    height: '10%',
-    width: '90%',
-    paddingLeft: '10%',
-    marginLeft: '2%',
-    marginTop: '25%',
-    marginBottom: '1%',
+    height: 20,
+    width: 360,
+    paddingLeft: 15,
+    marginLeft: 7,
+    marginTop: 10,
+    marginBottom: 4,
   },
 
   textStyle: {

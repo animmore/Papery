@@ -107,6 +107,7 @@ const ChatScreen = ({navigation}: Props) => {
 }
 
 const styles = StyleSheet.create({
+ 
   contactMsgsName: {
     color: 'white',
   },
