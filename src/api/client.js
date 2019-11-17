@@ -1,8 +1,6 @@
 const data = {}
 
-const randomMessages = ['Hello, how are you?']
-
-export function sendMessage(userEmail, message) {
+export function sendMessage(userEmail, text, type) {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       let messages = data[userEmail]
@@ -11,11 +9,16 @@ export function sendMessage(userEmail, message) {
         messages = []
       }
 
-      messages.push(...[message, randomMessages[0]])
+      const message = {
+        type: type,
+        text: text
+      }
+
+      messages.push(message)
 
       data[userEmail] = messages
 
-      resolve(messages)
+      resolve([...messages])
     }, 1000)
   })
 
@@ -33,3 +36,4 @@ export function getMessages(userEmail) {
 
   return promise
 }
+

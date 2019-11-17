@@ -1,10 +1,12 @@
-//@flow
+import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../types/types'
+import {RequestStatus} from '../utils/RequestStatus'
+
 const initialValue = {
   phoneNumber: '',
   password: '',
 }
 
-export const registration = (
+export const authentication = (
   state: {
     phoneNumber: string,
     password: string,
@@ -18,7 +20,7 @@ export const registration = (
   },
 ) => {
   switch (action.type) {
-    case 'REGISTRATION_DATA':
+    case 'AUTENTICATION_DATA':
       return {
         ...state,
         ...action.payload,

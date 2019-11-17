@@ -1,6 +1,10 @@
 import {React, useState} from 'react'
+import {addRegistrationData} from '../../actions/actions'
+import {useDispatch} from 'react-redux'
 
-const useRegistrationScreen = (addRegistrationData) => {
+const useRegistrationScreen = () => {
+  const dispatch = useDispatch()
+
   const [registrationData, setRegistrationData] = useState({
     phoneNumber: '',
     password: '',
@@ -12,7 +16,7 @@ const useRegistrationScreen = (addRegistrationData) => {
   }
 
   const onSubmit = () => {
-    addRegistrationData(phoneNumber, password)
+    dispatch(addRegistrationData(phoneNumber, password))
   }
 
   return {phoneNumber, password, handleTextChanged, onSubmit}

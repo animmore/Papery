@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, TextInput} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
+import {addAuthenticationData} from '../../actions/actions'
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
@@ -17,19 +18,17 @@ const LoginScreen = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.login}>
-        <Text style={styles.headerInputText}>Username</Text>
+        <Text style={styles.headerInputText}>Phone number</Text>
         <TextInput
           style={styles.textInput}
-          placeholder="Username"
+          placeholder="Phone number"
           // value={username}
-          //onPress={onUserName}
         />
         <Text style={styles.headerInputText}>Password</Text>
         <TextInput
           style={styles.textInput}
           placeholder="Password"
           // value = {password}
-          // onPress={onPassword}
         />
       </View>
       <View style={styles.containerButtons}>

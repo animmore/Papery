@@ -1,18 +1,62 @@
-import React from 'react'
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image} from 'react-native'
+import React, {useState, useEffect} from 'react'
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, FlatList} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
-import useChatScreen from './useChatScreen'
+import useFormInput from '../../hooks/use-form-input'
+import {getMessages, sendMessage} from '../../api/client'
+import {useSelector} from 'react-redux'
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
 }
 
+function ChatMessage({message, userName}) {
+  const userFirstName = useSelector((state) => state.createAccountReducer.firstName)
+
+  const {type, text} = message
+
+  const isOut = type === 'out'
+
+  const style = isOut ? styles.myUserMsgs : styles.contactMsgs
+
+  const name = isOut ? userFirstName : userName
+
+  return (
+    <View style={style}>
+      <Text style={styles.contactMsgsName}>{name}</Text>
+      <Text style={styles.contactMsgsText}>{text}</Text>
+    </View>
+  )
+}
+
+const randomMessages = ['Hello, how are you?']
+
 const ChatScreen = ({navigation}: Props) => {
-  const {handleTextInput, textInput} = useChatScreen()
+  const [textInput, onTextInputChange] = useFormInput('')
 
   const name = navigation.getParam('name')
   const surname = navigation.getParam('surname')
   const image = navigation.getParam('image')
+  const email = navigation.getParam('email')
+
+  const [messages, setMessages] = useState([])
+
+  useEffect(() => {
+    getMessages(email).then((data) => setMessages(data))
+  }, [])
+
+  function send() {
+    sendMessage(email, textInput, 'out').then((data) => setMessages(data))
+    onTextInputChange()('')
+
+    setTimeout(() => {
+      const message = randomMessages[0]
+      sendMessage(email, message, 'in').then((data) => setMessages(data))
+    }, 2000)
+  }
+
+  renderItem = ({messages, item}) => {
+    return <ChatMessage message={item} userName={name} />
+  }
 
   return (
     <View style={styles.container}>
@@ -35,22 +79,25 @@ const ChatScreen = ({navigation}: Props) => {
       </View>
       <View style={styles.separator} />
       <View style={styles.chat}>
-        <Text>Chat</Text>
+        <FlatList
+          data={messages}
+          renderItem={renderItem}
+          keyExtractor={(item, email) => `${email}`}
+        />
       </View>
       <View style={styles.messageInput}>
         <View style={styles.separator} />
         <View style={styles.messageFromMe}>
           <TextInput
             multiline
-            numberOfLines={4}
             selectionColor={'white'}
             style={styles.textInput}
-            onChangeText={handleTextInput('textInput')}
+            onChangeText={onTextInputChange()}
             placeholder={'Write a message...'}
             placeholderTextColor={'white'}
             value={textInput}
           />
-          <TouchableOpacity style={styles.sendMessage}>
+          <TouchableOpacity style={styles.sendMessage} onPress={send}>
             <Text style={styles.sendMessageBtn}>SEND</Text>
           </TouchableOpacity>
         </View>
@@ -60,6 +107,9 @@ const ChatScreen = ({navigation}: Props) => {
 }
 
 const styles = StyleSheet.create({
+  contactMsgsName: {
+    color: 'white',
+  },
   container: {
     flex: 1,
     alignItems: 'center',

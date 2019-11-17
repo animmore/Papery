@@ -2,17 +2,30 @@ import React from 'react'
 import {View, Text, TextInput, Image, TouchableOpacity, StyleSheet} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
 import useCreateAccountScreen from './useCreateAccountScreen'
+import useFormInput from '../../hooks/use-form-input'
+import {useDispatch} from 'react-redux'
+import {addAccountData} from '../../actions/actions'
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
 }
 
 const CreateAccountScreen = ({navigation}: Props) => {
-  const handleNavigation = () => {
-    navigation.navigate('ChatsScreen')
+  const [lastName, onLastNameChange] = useFormInput('')
+  const [firstName, onFirstNameChange] = useFormInput('')
+
+  const dispatch = useDispatch()
+
+  const handleCreationData = () => {
+    console.log(firstName, lastName)
+    dispatch(addAccountData(firstName, lastName))
   }
 
-  const {isProfilePhotoAdded, profilePhoto, handleChooseProfilePhoto} = useCreateAccountScreen()
+  const handleNavigation = () => {
+    handleCreationData()
+
+    return navigation.navigate('ChatsScreen')
+  }
 
   return (
     <View style={styles.createAccView}>
@@ -20,22 +33,20 @@ const CreateAccountScreen = ({navigation}: Props) => {
         <Text style={styles.createAccText}>Please, add your photo and data below.</Text>
       </View>
       <View style={styles.createAccData}>
-        <View style={styles.userPhoto}>
-          <TouchableOpacity onPress={handleChooseProfilePhoto}>
-            {isProfilePhotoAdded ? (
-              <View style={styles.imageView}>
-                <Image source={{uri: avatar}} />
-              </View>
-            ) : (
-              <View style={styles.imageView}>
-                {/*  <Image source={require('../../../assets/ .png')} />*/}
-              </View>
-            )}
-          </TouchableOpacity>
-        </View>
+        <View style={styles.userPhoto}></View>
         <View style={styles.userName}>
-          <TextInput style={styles.input} placeholder="Name" />
-          <TextInput style={styles.input} placeholder="Surname" />
+          <TextInput
+            onChangeText={onFirstNameChange()}
+            value={firstName}
+            style={styles.input}
+            placeholder="Name"
+          />
+          <TextInput
+            onChangeText={onLastNameChange()}
+            value={lastName}
+            style={styles.input}
+            placeholder="Surname"
+          />
         </View>
       </View>
       <View style={styles.createAccBtnContainer}>

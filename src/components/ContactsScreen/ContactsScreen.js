@@ -1,20 +1,32 @@
 import React from 'react'
 import {View, Text, Image, TouchableOpacity, TextInput, StyleSheet, FlatList} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
-import {useContactsScreen} from './useContactsScreen'
+
+import useLoadAction from '../../hooks/use-load-action'
+import useFormInput from '../../hooks/use-form-input'
+import useFilter from '../../hooks/use-filter'
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
 }
 
+const fetchContacts = () => {
+  return fetch('https://randomuser.me/api/?results=20&inc=name,gender,dob,email,phone,picture')
+    .then((response) => response.json())
+    .then((data) => data.results)
+}
+
 const ContactsScreen = ({navigation}: Props) => {
-  const {filtratedContacts, searchContacts} = useContactsScreen()
+  const contacts = useLoadAction(fetchContacts, [])
+  const [searchInput, onSearchInputChange] = useFormInput('')
+  const filteredContacts = useFilter(contacts, searchInput, 'name')
 
   const openChatPage = (item) => {
     return navigation.navigate('ChatScreen', {
       name: item.name.first,
       surname: item.name.last,
       image: item.picture.thumbnail,
+      email: item.email
     })
   }
 
@@ -45,14 +57,14 @@ const ContactsScreen = ({navigation}: Props) => {
           style={styles.search}
           placeholder={'Search..'}
           placeholderTextColor={'gray'}
-          onChangeText={searchContacts()}
+          onChangeText={onSearchInputChange()}
         />
       </View>
       <View>
         <FlatList
-          data={filtratedContacts}
+          data={filteredContacts}
           renderItem={renderItem}
-          keyExtractor={(filtratedContacts, index) => `${index}`}
+          keyExtractor={(filteredContacts, index) => `${index}`}
         />
       </View>
     </View>

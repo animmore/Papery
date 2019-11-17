@@ -1,25 +1,30 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {Text, View, StyleSheet} from 'react-native'
+import useSettingsScreen from './useSettingsScreen'
 
 const SettingsScreen = () => {
+  const {userPhoneNumber, userFirstName, userLastName} = useSettingsScreen()
   return (
-    <View style={styles.container}>
-      <Text style={styles.textStyle}> Settings Screen </Text>
+    <View style={styles.user}>
+      <View style={styles.userName}>
+        <Text style={styles.userNameText}>
+          {userFirstName} {userLastName} 000000
+        </Text>
+
+        <Text style={styles.userNamePhone}>{userPhoneNumber}</Text>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FFF',
+  user: {},
+  userName: {
+    backgroundColor: 'yellow',
+    marginTop: '50%',
   },
-  textStyle: {
-    fontSize: 24,
-    color: 'gray',
-    backgroundColor: '#FFF',
+  userNameText: {
+    color: 'red',
   },
 })
 

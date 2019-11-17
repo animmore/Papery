@@ -4,7 +4,7 @@ import React from 'react'
 import {View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native'
 import {NavigationState, NavigationScreenProp} from 'react-navigation'
 import PhoneInput from 'react-native-phone-input'
-import addRegistrationData from '../../actions/addRegistrationData'
+import {addRegistrationData} from '../../actions/actions'
 import useRegistrationScreen from './useRegistrationScreen'
 
 type Props = {
@@ -12,10 +12,8 @@ type Props = {
   addRegistrationData: (phoneNumber: string, password: string) => any,
 }
 
-const RegistrationScreen = ({navigation, addRegistrationData}: Props) => {
-  const {phoneNumber, password, handleTextChanged, onSubmit} = useRegistrationScreen(
-    addRegistrationData,
-  )
+const RegistrationScreen = ({navigation}: Props) => {
+  const {phoneNumber, password, handleTextChanged, onSubmit} = useRegistrationScreen()
 
   const handleNavigation = () => {
     navigation.navigate('CreateAccountScreen')
